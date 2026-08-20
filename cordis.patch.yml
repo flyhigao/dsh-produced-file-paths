@@ -1,0 +1,4 @@
+# Insert the independent browser plugin into the composed Web client roster.
+- insert:
+    - id: dsh-produced-file-paths
+      name: 'dsh-produced-file-paths'

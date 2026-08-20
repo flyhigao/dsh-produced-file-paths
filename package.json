@@ -1,0 +1,49 @@
+{
+  "name": "dsh-produced-file-paths",
+  "description": "Show and copy absolute paths for files produced by DSH turns.",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flyhigao/dsh-produced-file-paths.git"
+  },
+  "keywords": [
+    "deepseek",
+    "harness",
+    "dsh",
+    "dsh-plugin",
+    "file-paths",
+    "clipboard"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-connection",
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-ui-conversation",
+        "@deepseek-ai/dsh-client-ui-deliverables"
+      ],
+      "platform": "web"
+    }
+  },
+  "exports": {
+    ".": {
+      "default": "./lib/index.js"
+    },
+    "./client": "./client/client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "client",
+    "cordis.patch.yml",
+    "README.md"
+  ]
+}

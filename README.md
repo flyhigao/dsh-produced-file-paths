@@ -37,25 +37,20 @@ DSH 的远程 Web 界面会把本轮生成或修改的文件显示为可点击�
 
 ## 安装
 
-本地 profile 使用：
+直接通过 DSH 插件管理命令从 GitHub 安装：
 
-```json
-{
-  "dependencies": {
-    "dsh-produced-file-paths": "file:/home/gao/dsh/dsh-produced-file-paths"
-  },
-  "dsh": {
-    "profile": {
-      "bundles": [
-        "@deepseek-ai/dsh-base",
-        "@deepseek-ai/dsh-web-app",
-        "dshmarket",
-        "dsh-sticky-notes",
-        "dsh-produced-file-paths"
-      ]
-    }
-  }
-}
+```bash
+dsh plugin --profile web add github:flyhigao/dsh-produced-file-paths
 ```
 
-然后在 Web profile 目录执行 `pnpm install` 并重启 DSH。
+安装完成后重启 `dsh web`，然后硬刷新远程 Web 页面（`Ctrl+Shift+R`）。
+
+### 本地开发
+
+如果要使用本地源码开发，可以改用本地目录安装：
+
+```bash
+dsh plugin --profile web add file:/path/to/dsh-produced-file-paths
+```
+
+修改客户端代码后刷新页面；修改服务端入口或插件组合后重启 `dsh web`。

@@ -33,33 +33,20 @@ The following screenshot shows the plugin working in the DSH remote Web interfac
 
 ## Installation
 
-Add the plugin to a Web profile. For local development:
-
-```json
-{
-  "dependencies": {
-    "dsh-produced-file-paths": "file:/home/gao/dsh/dsh-produced-file-paths"
-  },
-  "dsh": {
-    "profile": {
-      "bundles": [
-        "@deepseek-ai/dsh-base",
-        "@deepseek-ai/dsh-web-app",
-        "dshmarket",
-        "dsh-sticky-notes",
-        "dsh-produced-file-paths"
-      ]
-    }
-  }
-}
-```
-
-Then run `pnpm install` in the Web profile directory and restart DSH.
-
-For a GitHub installation, add the repository as a local/profile plugin using your DSH plugin management workflow:
+Install it directly from GitHub with the DSH plugin manager:
 
 ```bash
 dsh plugin --profile web add github:flyhigao/dsh-produced-file-paths
 ```
 
-After installation, hard-refresh the Web page if the old client bundle is still cached.
+After installation, restart `dsh web` and hard-refresh the remote Web page (`Ctrl+Shift+R`).
+
+### Local development
+
+To develop from a local checkout instead, use a local directory source:
+
+```bash
+dsh plugin --profile web add file:/path/to/dsh-produced-file-paths
+```
+
+Refresh the page after client-bundle changes. Restart `dsh web` after changing the host entry or bundle composition.

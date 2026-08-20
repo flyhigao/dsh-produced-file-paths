@@ -45,6 +45,7 @@
     "client",
     "cordis.patch.yml",
     "README.md",
-    "README.en.md"
+    "README.en.md",
+    "filepath.png"
   ]
 }

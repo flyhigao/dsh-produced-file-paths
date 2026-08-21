@@ -19,7 +19,7 @@ This plugin does not try to turn a Host filesystem path into a browser URL, and 
 
 The following screenshot shows the plugin working in the DSH remote Web interface:
 
-![dsh-produced-file-paths UI](filepath.png)
+![dsh-produced-file-paths UI](assets/filepath.png)
 
 ## Features
 

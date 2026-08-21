@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -34,6 +35,7 @@
   },
   "exports": {
     ".": {
+      "types": "./lib/types/index.d.ts",
       "default": "./lib/index.js"
     },
     "./client": "./client/client.js",
@@ -43,9 +45,9 @@
   "files": [
     "lib",
     "client",
+    "assets",
     "cordis.patch.yml",
     "README.md",
-    "README.en.md",
-    "filepath.png"
+    "README.en.md"
   ]
 }

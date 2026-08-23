@@ -22,8 +22,6 @@ DSH 的远程 Web 界面会把本轮生成或修改的文件显示为可点击�
 ## 界面效果
 
 下面是插件在 DSH 远程 Web 界面中的实际效果：
-### ---------------------------------真实界面----------------------------------------
-
 ![文件路径复制插件界面](assets/filepath.png)
 
 ## 功能
@@ -90,3 +88,18 @@ dsh plugin --profile web add file:/path/to/dsh-produced-file-paths
    ```
 
 远程 Web 页面没有桌面文件打开器并不影响路径复制；该功能只依赖浏览器剪贴板和当前 Session 的路径数据。
+
+## 开发与发布检查
+
+这是一个手工维护的轻量插件，不需要额外构建工具。浏览器 bundle 位于 `client/client.js`，服务端入口位于 `lib/index.js`。
+
+提交前可以执行：
+
+```bash
+node --check client/client.js
+node --check lib/index.js
+npm pack --dry-run
+tar -tzf dsh-produced-file-paths-*.tgz
+```
+
+发布包必须包含 `lib/`、`lib/types/`、`client/`、`assets/`、`cordis.patch.yml` 和双语 README。插件的 `dsh.bundle` 声明与根目录的 `cordis.patch.yml` 是通过 DSH 插件管理命令安装和提交插件市场所必需的组合入口。

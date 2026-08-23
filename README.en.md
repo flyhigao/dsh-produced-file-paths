@@ -85,3 +85,18 @@ If the copy control is not visible after installation, check the following in or
    ```
 
 A remote Web Host without a desktop file opener can still use path copying; the feature only needs the browser clipboard and the current Session's path data.
+
+## Development and release checks
+
+This is a small hand-maintained plugin and does not require an additional build tool. The browser bundle is `client/client.js`, and the host entry is `lib/index.js`.
+
+Before committing or publishing, run:
+
+```bash
+node --check client/client.js
+node --check lib/index.js
+npm pack --dry-run
+tar -tzf dsh-produced-file-paths-*.tgz
+```
+
+The release package must contain `lib/`, `lib/types/`, `client/`, `assets/`, `cordis.patch.yml`, and both README files. The `dsh.bundle` declaration in `package.json` and the root `cordis.patch.yml` are the composition entry required by the DSH plugin manager and the plugin market.

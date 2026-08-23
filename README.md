@@ -55,3 +55,15 @@ dsh plugin --profile web add file:/path/to/dsh-produced-file-paths
 ```
 
 修改客户端代码后刷新页面；修改服务端入口或插件组合后重启 `dsh web`。
+
+## 路径语义与安全边界
+
+插件复制的是 DSH 当前 Session 工作区下的**绝对文件系统路径**，不是浏览器 URL，也不是 `file://` 链接。例如：
+
+```text
+/home/gao/dsh/reports/summary.md
+```
+
+路径来自 DSH 的 produced-file 数据，并由当前 Session 的工作区目录解析相对路径。插件只读取和展示这些路径，不接受用户输入的路径，不扫描工作区，也不读取文件内容。
+
+因此，复制路径本身不会增加新的文件访问权限；能否访问文件仍由 SSH、终端、编辑器或其他实际使用该路径的工具决定。

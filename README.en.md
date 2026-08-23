@@ -50,3 +50,15 @@ dsh plugin --profile web add file:/path/to/dsh-produced-file-paths
 ```
 
 Refresh the page after client-bundle changes. Restart `dsh web` after changing the host entry or bundle composition.
+
+## Path semantics and security boundary
+
+The plugin copies an **absolute filesystem path** under the current DSH Session workspace. It does not create a browser URL or a `file://` link. For example:
+
+```text
+/home/gao/dsh/reports/summary.md
+```
+
+Paths come from DSH's published produced-file data, with relative paths resolved against the current Session workspace. The plugin only reads and displays those paths; it does not accept user-supplied paths, scan the workspace, or read file contents.
+
+Copying a path therefore does not grant any new file access. Whether the path can be used remains determined by SSH, a terminal, an editor, or another tool where the path is pasted.

@@ -62,3 +62,26 @@ The plugin copies an **absolute filesystem path** under the current DSH Session 
 Paths come from DSH's published produced-file data, with relative paths resolved against the current Session workspace. The plugin only reads and displays those paths; it does not accept user-supplied paths, scan the workspace, or read file contents.
 
 Copying a path therefore does not grant any new file access. Whether the path can be used remains determined by SSH, a terminal, an editor, or another tool where the path is pasted.
+
+## Troubleshooting after an upgrade
+
+If the copy control is not visible after installation, check the following in order:
+
+1. Make sure the plugin was installed into the Web profile:
+
+   ```bash
+   dsh plugin --profile web add github:flyhigao/dsh-produced-file-paths
+   ```
+
+2. Restart `dsh web`, because `cordis.patch.yml` and the browser plugin manifest are composed at startup.
+3. Hard-refresh the browser page (`Ctrl+Shift+R`) to discard an old client-bundle cache.
+4. Confirm that DSH's built-in produced-files row appears first. This plugin only renders paths that DSH has already identified; it does not guess files from prose or scan the workspace.
+5. When developing from a local checkout, remove the stale profile copy and reinstall it:
+
+   ```bash
+   cd ~/.dsh/profiles/web
+   rm -rf node_modules/dsh-produced-file-paths
+   pnpm install
+   ```
+
+A remote Web Host without a desktop file opener can still use path copying; the feature only needs the browser clipboard and the current Session's path data.

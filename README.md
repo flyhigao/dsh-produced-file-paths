@@ -67,3 +67,26 @@ dsh plugin --profile web add file:/path/to/dsh-produced-file-paths
 路径来自 DSH 的 produced-file 数据，并由当前 Session 的工作区目录解析相对路径。插件只读取和展示这些路径，不接受用户输入的路径，不扫描工作区，也不读取文件内容。
 
 因此，复制路径本身不会增加新的文件访问权限；能否访问文件仍由 SSH、终端、编辑器或其他实际使用该路径的工具决定。
+
+## 升级后或看不到路径时的排查
+
+如果安装后没有看到复制入口，按下面顺序检查：
+
+1. 确认插件安装在 Web profile，而不是其他 profile：
+
+   ```bash
+   dsh plugin --profile web add github:flyhigao/dsh-produced-file-paths
+   ```
+
+2. 重启 `dsh web`，因为 `cordis.patch.yml` 和浏览器插件清单在启动时组合。
+3. 在浏览器执行硬刷新（`Ctrl+Shift+R`），清除旧的 client bundle 缓存。
+4. 先确认 DSH 内置的“产物”文件行正常出现。插件只显示 DSH 已识别的 produced-file；如果该行没有文件，插件也不会凭空猜测路径。
+5. 如果只修改了本地源码，删除 profile 中旧的插件副本后重新安装：
+
+   ```bash
+   cd ~/.dsh/profiles/web
+   rm -rf node_modules/dsh-produced-file-paths
+   pnpm install
+   ```
+
+远程 Web 页面没有桌面文件打开器并不影响路径复制；该功能只依赖浏览器剪贴板和当前 Session 的路径数据。

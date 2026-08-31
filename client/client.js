@@ -13,13 +13,23 @@ window.__ModuleLoader__.load({
 
     var React = require('react');
     var primitives = require('@deepseek-ai/dsh-client-ui-primitives');
-    var runtime = require('@deepseek-ai/dsh-client-runtime/client');
     var deliverables = require('@deepseek-ai/dsh-client-ui-deliverables/client');
 
     var IconCopyOutline16 = primitives.IconCopyOutline16;
     var IconCheckOutline16 = primitives.IconCheckOutline16;
     var writeClipboard = primitives.writeClipboard;
-    var resolveWorkspacePath = runtime.resolveWorkspacePath;
+
+    function isWindowsStylePath(value) {
+      return /^[A-Za-z]:[/\\\\]/.test(value) || value.startsWith('\\\\\\\\');
+    }
+
+    function resolveWorkspacePath(cwd, path) {
+      if (path.startsWith('/') || isWindowsStylePath(path)) return path;
+      if (cwd === undefined || cwd === '') return path;
+      var base = cwd.replace(/[/\\\\]+$/, '');
+      var rel = path.replace(/^[/\\\\]+/, '');
+      return base + '/' + rel;
+    }
     var useState = React.useState;
     var useMemo = React.useMemo;
     var useEffect = React.useEffect;
@@ -140,13 +150,9 @@ window.__ModuleLoader__.load({
 
     function ProducedPathsSlot(props) {
       return React.createElement(React.Fragment, null,
-        React.createElement(deliverables.ProducedFiles, {
-          matched: props.matched,
-          openFile: props.openFile,
-          isLoopback: props.isLoopback,
-          useHostDescription: props.useHostDescription,
+        React.createElement(deliverables.ProducedFiles, Object.assign({}, props, {
           t: props.deliverablesT,
-        }),
+        })),
         React.createElement(PathList, props)
       );
     }
@@ -167,8 +173,7 @@ window.__ModuleLoader__.load({
           select: selectProducedPaths,
           inject: function () {
             return {
-              isLoopback: connection.isLoopback,
-              hooks: { hostDescription: connection.hostDescription },
+              isLoopback: connection ? connection.isLoopback : true,
               deliverablesT: ctx.locale.bind('deliverables'),
             };
           },

@@ -34,6 +34,12 @@ DSH 的远程 Web 界面会把本轮生成或修改的文件显示为可点击�
 - 不增加文件下载接口；
 - 不修改 `dsh-sticky-notes`。
 
+## 兼容性
+
+- 支持 DSH `0.1.0-rc.6`、`0.1.0-rc.8`、`0.1.1-rc.2`、`0.1.2-alpha.2` 及更高版本。
+- 零外部运行时依赖，不依赖已被废弃的 `dsh-client-runtime`。
+- 使用 DSH 标准插槽 `conversation.chat.turnTail` 注入，与内置产物行共存。
+
 ## 安装
 
 直接通过 DSH 插件管理命令从 GitHub 安装：

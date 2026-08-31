@@ -1,7 +1,7 @@
 {
   "name": "dsh-produced-file-paths",
   "description": "Show and copy absolute paths for files produced by DSH turns.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "main": "lib/index.js",
   "types": "lib/types/index.d.ts",

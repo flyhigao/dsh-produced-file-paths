@@ -31,6 +31,12 @@ The following screenshot shows the plugin working in the DSH remote Web interfac
 - Does not add a file-download endpoint;
 - Does not modify `dsh-sticky-notes`.
 
+## Compatibility
+
+- Supports DSH `0.1.0-rc.6`, `0.1.0-rc.8`, `0.1.1-rc.2`, `0.1.2-alpha.2`, and later versions.
+- Zero external runtime dependencies; does not depend on the deprecated `dsh-client-runtime`.
+- Injects via DSH standard slot `conversation.chat.turnTail` to coexist with built-in deliverables.
+
 ## Installation
 
 Install it directly from GitHub with the DSH plugin manager:

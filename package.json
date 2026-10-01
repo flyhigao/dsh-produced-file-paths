@@ -1,7 +1,7 @@
 {
   "name": "dsh-produced-file-paths",
   "description": "Show and copy absolute paths for files produced by DSH turns.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "type": "module",
   "main": "lib/index.js",
   "types": "lib/types/index.d.ts",
@@ -24,10 +24,8 @@
     },
     "client": {
       "inject": [
-        "@deepseek-ai/dsh-client-connection",
         "@deepseek-ai/dsh-client-locale",
-        "@deepseek-ai/dsh-client-ui-conversation",
-        "@deepseek-ai/dsh-client-ui-deliverables"
+        "@deepseek-ai/dsh-client-ui-conversation"
       ],
       "platform": "web"
     }
